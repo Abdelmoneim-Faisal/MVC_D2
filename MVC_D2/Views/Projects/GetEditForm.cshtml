@@ -1,0 +1,37 @@
+﻿@model Project
+
+<h1>Edit Project</h1>
+<form action="/Projects/update">
+    <input name="Projnumber" hidden value="@Model.Pnumber"/>
+    <div class="mb-3">
+        <label for="Projname" class="form-label">Project Name</label>
+        <input type="Text" class="form-control" id="Projname" name="Projname" value="@Model.Pname">
+    </div>
+    <div class="mb-3">
+        <label for="Projlocation" class="form-label">Project Location</label>
+        <input type="Text" class="form-control" id="Projlocation" name="Projlocation" value="@Model.Plocation">
+    </div>
+    <div class="mb-3">
+        <label for="City" class="form-label">City</label>
+        <input type="text" class="form-control" id="city" name="city" value="@Model.City">
+    </div>
+
+    <div class="mb-3 form-check">
+        <label class="form-check-label" for="department">Department</label>
+        <select name="deptId" id="deptId">
+            @foreach (Departments item in ViewBag.departments)
+            {
+                if(Model.Dnum== item.Dnum)
+                {
+                    <option value="@item.Dnum" selected>@item.Dname</option>
+                }
+                else
+                {
+                    <option value="@item.Dnum">@item.Dname</option>
+
+                }
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Edit</button>
+</form>

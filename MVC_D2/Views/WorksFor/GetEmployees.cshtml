@@ -1,0 +1,62 @@
+﻿@model List<Employee>
+@{
+
+    SelectList EmpSelectList = new SelectList(Model, "SSN", "Fname");
+}
+<form action="/WorksFor/EditHour" method="post">
+
+    <select onchange="getProjects()" name="eId" id="empSelect" asp-items="EmpSelectList" class="form-control w-50 mb-3">
+        <option value="0">Choose the Employee</option>
+    </select>
+    <select onchange="getHours()" name="pId" id="projSelect" class="form-control w-50 mb-3">
+        <option value="0">Choose the project</option>
+    </select>
+
+    <input type="number" name="hour" id="hour" />
+
+    <input class="btn btn-success" type="submit" value="update Hours" />
+</form>
+
+
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script>
+            var hour = document.getElementById("hour");
+        function getProjects() {
+            hour.value = null;
+            var empId = document.getElementById("empSelect").value;
+            var projSelect = document.getElementById("projSelect");
+            projSelect.innerHTML = `<option value="0">Choose the project</option>`;
+
+            $.ajax({
+                url: "/WorksFor/GetProjects/" + empId,
+                success: function (data) {
+                    console.log(data)
+                    for (var p of data) {
+                        projSelect.innerHTML += `<option value="${p.pnumber}">${p.pname}</option>`;
+                    }
+                }
+
+
+            });
+        }
+        
+
+        function getHours() {
+            var empId = document.getElementById("empSelect").value;
+            var projId = document.getElementById("projSelect").value;
+
+            $.ajax({
+                url: "/WorksFor/GetHours/" + empId,
+                data: { pid: projId },
+                success: function (data) {
+                    console.log(data);
+                    hour.value = data.hours;
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        }
+
+    </script>

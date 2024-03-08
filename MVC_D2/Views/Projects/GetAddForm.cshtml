@@ -1,0 +1,26 @@
+﻿<h1>Add Project</h1>
+<form action="/projects/getformData">
+    <div class="mb-3">
+        <label for="pname" class="form-label">Project Name</label>
+        <input type="Text" class="form-control" id="Projname" name="Projname">
+    </div>
+    <div class="mb-3">
+        <label for="plocation" class="form-label">Project location</label>
+        <input type="Text" class="form-control" id="Projlocation" name="Projlocation">
+    </div>
+    <div class="mb-3">
+        <label for="city" class="form-label">City</label>
+        <input type="text" class="form-control" id="city" name="city">
+    </div>
+
+    <div class="mb-3 form-check">
+        <label class="form-check-label" for="department">Department</label>
+        <select name="deptId" id="department">
+            @foreach (Departments item in ViewBag.departments)
+            {
+                <option value="@item.Dnum">@item.Dname</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Add</button>
+</form>         

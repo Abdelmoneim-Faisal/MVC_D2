@@ -1,0 +1,12 @@
+﻿@model Employee
+<form asp-action="LoginDB" asp-controller="Account">
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input class="form-control" asp-for="Email">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Password" class="form-label"></label>
+        <input class="form-control" asp-for="Password" type="password">
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>

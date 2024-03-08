@@ -1,0 +1,25 @@
+﻿@{
+    SelectList list = new SelectList(ViewBag.manager, "SSN", "Fname");
+}
+@model Departments
+
+<h1>Edit Department</h1>
+@* asp-route-id="@Model.Id" *@
+<form asp-action="EditDB" asp-controller="Department">
+    <input asp-for="Dnum" hidden />
+    <div class="mb-3">
+        <label asp-for="Dname" class="form-label"></label>
+        <input class="form-control" asp-for="Dname">
+    </div>
+    <div class="mb-3">
+        <label asp-for="MGRStart_Date" class="form-label"></label>
+        <input class="form-control" asp-for="MGRStart_Date">
+    </div>
+
+    <div class="mb-3 form-check">
+        <label class="form-check-label" asp-for="MGRSSN"></label>
+        <select asp-for="MGRSSN" class="form-control" asp-items="list">
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Edit</button>
+</form>

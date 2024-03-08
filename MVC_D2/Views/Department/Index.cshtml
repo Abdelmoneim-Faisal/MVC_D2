@@ -1,0 +1,34 @@
+﻿@model List<Departments>
+@{
+    int i = 0;
+}
+
+<a class="btn btn-success" asp-action="Add" asp-controller="department">Add</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Department Name</th>
+            <th scope="col">Department Number</th>
+            <th scope="col">Manager</th>
+            <th scope="col">Manager Start Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@(++i)</th>
+                <td>@item.Dname</td>
+                <td>@item.Dnum</td>
+                <td>@item.manager.Fname @item.manager.Lname</td>
+                <td>@item.MGRStart_Date</td>
+                <td>
+                    <a asp-action="Edit" asp-controller="Department" asp-route-id="@item.Dnum">Edit</a>|
+                    <a asp-action="Delete" asp-controller="Department" asp-route-id="@item.Dnum">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

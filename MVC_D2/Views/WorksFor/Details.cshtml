@@ -1,0 +1,16 @@
+﻿@model List<WorksFor>
+@{
+    var colorValue = ViewData["ColorValue"] as string;
+}
+
+@foreach (var item in Model){
+        <div class="card">
+            <div class="card-body">
+            <h5 class="card-title">@item.project.Pname</h5>
+            <h6 class="card-subtitle mb-2 text-muted">@item.employee.Fname @item.employee.Lname</h6>
+            <p class="card-text" style="color:@(item.Hours < 5 ? colorValue : "green")">Hours: @item.Hours</p>
+            </div>
+        </div>
+}
+<a asp-action="Index" asp-controller="WorksFor">Back</a>
+      
